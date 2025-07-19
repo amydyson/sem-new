@@ -15,7 +15,6 @@ const theme = createTheme({
       styleOverrides: {
         "#root": {
           height: "100vh",
-          width: "100vw",
         },
         body: {
           margin: 0,

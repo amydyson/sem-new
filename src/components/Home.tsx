@@ -9,7 +9,7 @@ const Home = () => {
       <Typography
         sx={{
           marginTop: 5,
-          fontSize: "2rem",
+          fontSize: "1.5rem",
           textTransform: "uppercase",
           display: "flex",
           justifyContent: "center",
@@ -22,15 +22,27 @@ const Home = () => {
         sx={{
           height: "100vh", // subtract navbar height (default AppBar is 64px)
           display: "flex",
-          width: "100%",
           justifyContent: "center",
           alignItems: "center",
           gap: 10,
+          overflowX: "hidden",
         }}
       >
-        <img src={BloodCuffImage} alt="Medição da Pressão Arterial" />
-        <img src={UtenteImage} alt="Utente" />
-        <img src={ProfissionalImage} alt="Profissional de Saúde" />
+        <img
+          style={{ maxWidth: "200px", width: "100%", height: "auto" }}
+          src={UtenteImage}
+          alt="Utente"
+        />
+        <img
+          style={{ maxWidth: "200px", width: "100%", height: "auto" }}
+          src={BloodCuffImage}
+          alt="Medição da Pressão Arterial"
+        />
+        <img
+          style={{ maxWidth: "200px", width: "100%", height: "auto" }}
+          src={ProfissionalImage}
+          alt="Profissional de Saúde"
+        />
       </Box>
     </Box>
   );
