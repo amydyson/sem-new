@@ -3,13 +3,25 @@ import UtenteImage from "../assets/New-Utente.png";
 import ProfissionalImage from "../assets/new-profissional.png";
 import BloodCuffImage from "../assets/newest-one.png";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
+import SemPressaoIcon from "../assets/SEM-PRESSÃO-icon.png";
 
 const Home = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box sx={{ p: 2 }}>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Box
+        sx={{ display: isMobile ? "flex" : "none", justifyContent: "center" }}
+      >
+        <img
+          src={SemPressaoIcon}
+          alt="Sem Pressão"
+          style={{ maxWidth: "25px", height: "auto" }}
+        />
+      </Box>
+      <Box
+        sx={{ display: isMobile ? "none" : "flex", justifyContent: "flex-end" }}
+      >
         <MenuSharpIcon sx={{ fontSize: "2rem" }} />
       </Box>
       <Typography
@@ -31,7 +43,7 @@ const Home = () => {
           marginTop: isMobile ? 2 : 10,
           justifyContent: "center",
           alignItems: "center",
-          gap: isMobile ? 2 : 10,
+          gap: isMobile ? 0 : 10,
           overflowX: "hidden",
         }}
       >
@@ -52,7 +64,7 @@ const Home = () => {
         <img
           style={{
             cursor: "pointer",
-            maxWidth: "200px",
+            maxWidth: isMobile ? "150px" : "200px",
             width: "100%",
             height: "auto",
           }}
@@ -62,7 +74,7 @@ const Home = () => {
         <img
           style={{
             cursor: "pointer",
-            maxWidth: "200px",
+            maxWidth: isMobile ? "150px" : "200px",
             width: "100%",
             height: "auto",
           }}
