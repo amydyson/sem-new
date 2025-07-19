@@ -11,7 +11,6 @@ function App() {
       <CssBaseline />
       <Box>
         <Router>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/utente" element={<Utente />} />
