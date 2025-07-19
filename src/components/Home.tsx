@@ -1,15 +1,21 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import UtenteImage from "../assets/New-Utente.png";
 import ProfissionalImage from "../assets/new-profissional.png";
 import BloodCuffImage from "../assets/newest-one.png";
+import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box sx={{ p: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <MenuSharpIcon sx={{ fontSize: "2rem" }} />
+      </Box>
       <Typography
         sx={{
-          marginTop: 5,
-          fontSize: "1.5rem",
+          marginTop: isMobile ? 2 : 5,
+          fontSize: isMobile ? "1rem" : "1.5rem",
           textTransform: "uppercase",
           display: "flex",
           justifyContent: "center",
@@ -20,27 +26,46 @@ const Home = () => {
       </Typography>
       <Box
         sx={{
-          height: "100%", // subtract navbar height (default AppBar is 64px)
           display: "flex",
-          marginTop: 10,
+          flexDirection: isMobile ? "column" : "row",
+          marginTop: isMobile ? 2 : 10,
           justifyContent: "center",
           alignItems: "center",
-          gap: 10,
+          gap: isMobile ? 2 : 10,
           overflowX: "hidden",
         }}
       >
+        <Box
+          sx={{
+            display: {
+              xs: "none", // hide on small screens and up
+              md: "flex", // show on medium screens and up (≥900px)
+            },
+          }}
+        >
+          <img
+            style={{ maxWidth: "200px", height: "auto" }}
+            src={BloodCuffImage}
+            alt="Medição da Pressão Arterial"
+          />
+        </Box>
         <img
-          style={{ maxWidth: "200px", width: "100%", height: "auto" }}
-          src={BloodCuffImage}
-          alt="Medição da Pressão Arterial"
-        />
-        <img
-          style={{ maxWidth: "200px", width: "100%", height: "auto" }}
+          style={{
+            cursor: "pointer",
+            maxWidth: "200px",
+            width: "100%",
+            height: "auto",
+          }}
           src={UtenteImage}
           alt="Utente"
         />
         <img
-          style={{ maxWidth: "200px", width: "100%", height: "auto" }}
+          style={{
+            cursor: "pointer",
+            maxWidth: "200px",
+            width: "100%",
+            height: "auto",
+          }}
           src={ProfissionalImage}
           alt="Profissional de Saúde"
         />
