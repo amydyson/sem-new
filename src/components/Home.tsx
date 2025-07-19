@@ -61,26 +61,41 @@ const Home = () => {
             alt="Medição da Pressão Arterial"
           />
         </Box>
-        <img
-          style={{
-            cursor: "pointer",
-            maxWidth: isMobile ? "150px" : "200px",
-            width: "100%",
-            height: "auto",
+        <Box
+          sx={{
+            mr: isMobile ? "40px" : 0, // move to the left
+            zIndex: 2,
           }}
-          src={UtenteImage}
-          alt="Utente"
-        />
-        <img
-          style={{
-            cursor: "pointer",
-            maxWidth: isMobile ? "150px" : "200px",
-            width: "100%",
-            height: "auto",
+        >
+          <img
+            style={{
+              cursor: "pointer",
+              maxWidth: isMobile ? "150px" : "200px",
+              width: "100%",
+              height: "auto",
+            }}
+            src={UtenteImage}
+            alt="Utente"
+          />
+        </Box>
+        <Box
+          sx={{
+            mt: isMobile ? "-15px" : 0, // negative margin for overlap
+            ml: isMobile ? "40px" : 0, // move to the left
+            zIndex: 2,
           }}
-          src={ProfissionalImage}
-          alt="Profissional de Saúde"
-        />
+        >
+          <img
+            style={{
+              cursor: "pointer",
+              maxWidth: isMobile ? "150px" : "200px",
+              width: "100%",
+              height: "auto",
+            }}
+            src={ProfissionalImage}
+            alt="Profissional de Saúde"
+          />
+        </Box>
       </Box>
     </Box>
   );
