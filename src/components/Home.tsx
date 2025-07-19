@@ -20,8 +20,9 @@ const Home = () => {
       </Typography>
       <Box
         sx={{
-          height: "100vh", // subtract navbar height (default AppBar is 64px)
+          height: "100%", // subtract navbar height (default AppBar is 64px)
           display: "flex",
+          marginTop: 10,
           justifyContent: "center",
           alignItems: "center",
           gap: 10,
@@ -30,13 +31,13 @@ const Home = () => {
       >
         <img
           style={{ maxWidth: "200px", width: "100%", height: "auto" }}
-          src={UtenteImage}
-          alt="Utente"
+          src={BloodCuffImage}
+          alt="Medição da Pressão Arterial"
         />
         <img
           style={{ maxWidth: "200px", width: "100%", height: "auto" }}
-          src={BloodCuffImage}
-          alt="Medição da Pressão Arterial"
+          src={UtenteImage}
+          alt="Utente"
         />
         <img
           style={{ maxWidth: "200px", width: "100%", height: "auto" }}
