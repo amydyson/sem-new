@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import UtenteImage from "../assets/New-Utente.png";
 import ProfissionalImage from "../assets/new-profissional.png";
@@ -6,6 +7,7 @@ import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import SemPressaoIcon from "../assets/SEM-PRESSÃO-icon.png";
 
 const Home = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -40,10 +42,10 @@ const Home = () => {
         sx={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
-          marginTop: isMobile ? 2 : 10,
+          marginTop: isMobile ? 5 : 10,
           justifyContent: "center",
           alignItems: "center",
-          gap: isMobile ? 0 : 10,
+          gap: isMobile ? 2 : 10,
           overflowX: "hidden",
         }}
       >
@@ -63,8 +65,10 @@ const Home = () => {
         </Box>
         <Box
           sx={{
-            mr: isMobile ? "40px" : 0, // move to the left
-            zIndex: 2,
+            "&:hover": {
+              filter: "brightness(1.1)",
+              transition: "filter 0.2s",
+            },
           }}
         >
           <img
@@ -76,13 +80,15 @@ const Home = () => {
             }}
             src={UtenteImage}
             alt="Utente"
+            onClick={() => navigate("/utente")}
           />
         </Box>
         <Box
           sx={{
-            mt: isMobile ? "-15px" : 0, // negative margin for overlap
-            ml: isMobile ? "40px" : 0, // move to the left
-            zIndex: 2,
+            "&:hover": {
+              filter: "brightness(1.1)",
+              transition: "filter 0.2s",
+            },
           }}
         >
           <img
@@ -94,6 +100,7 @@ const Home = () => {
             }}
             src={ProfissionalImage}
             alt="Profissional de Saúde"
+            onClick={() => navigate("/profissional-de-saúde")}
           />
         </Box>
       </Box>
