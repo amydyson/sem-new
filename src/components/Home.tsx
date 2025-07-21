@@ -22,7 +22,6 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box sx={{ p: 2 }}>
-      <LogoutButton />
       <Box
         sx={{ display: isMobile ? "flex" : "none", justifyContent: "center" }}
       >
@@ -35,7 +34,7 @@ const Home = () => {
       <Box
         sx={{ display: isMobile ? "none" : "flex", justifyContent: "flex-end" }}
       >
-        <MenuSharpIcon sx={{ fontSize: "2rem" }} />
+        <LogoutButton />
       </Box>
       <Typography
         sx={{
