@@ -5,17 +5,15 @@ import LogoutButton from "./LogoutButton";
 import UtenteImage from "../assets/New-Utente.png";
 import ProfissionalImage from "../assets/new-profissional.png";
 import BloodCuffImage from "../assets/newest-one.png";
-import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import SemPressaoIcon from "../assets/SEM-PRESSÃO-icon.png";
 
 const Home = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
 
   // Debug: See what's in the user object
   console.log("Full user object:", user);
 
   // Check if user has specific roles (this will be in user object)
-  const userRoles = user?.["https://your-domain.com/roles"] || [];
 
   const navigate = useNavigate();
   const theme = useTheme();
