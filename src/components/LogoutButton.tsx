@@ -1,24 +1,21 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 
 const LogoutButton = () => {
   const { logout } = useAuth0();
 
-  return (
-    <Box sx={{ p: 2 }}>
-      {/* Add logout button at the top */}
-      <Button
-        variant="outlined"
-        onClick={() =>
-          logout({ logoutParams: { returnTo: window.location.origin } })
-        }
-        sx={{ mb: 2 }}
-      >
-        Log Out
-      </Button>
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: import.meta.env.VITE_REDIRECT_URI || window.location.origin,
+      },
+    });
+  };
 
-      {/* ...rest of your existing code... */}
-    </Box>
+  return (
+    <Button variant="contained" onClick={handleLogout}>
+      Log Out
+    </Button>
   );
 };
 
