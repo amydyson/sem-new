@@ -24,9 +24,7 @@ createRoot(document.getElementById("root")!).render(
       clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
       authorizationParams={{
         redirect_uri: redirectUri,
-      }}
-      logoutParams={{
-        returnTo: redirectUri,
+        // Optionally add 'returnTo' here if needed by your Auth0 setup
       }}
       cacheLocation="localstorage"
     >

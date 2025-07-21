@@ -5,9 +5,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Switch,
-  Slider,
   TextField,
-  FormControlLabel,
   Card,
   CardContent,
   useTheme,
@@ -22,15 +20,18 @@ const Utente = () => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [imc, setImc] = useState("");
-  const [bloodPressureHigh, setBloodPressureHigh] = useState(130);
-  const [bloodPressureLow, setBloodPressureLow] = useState(80);
-  const [targetPressure, setTargetPressure] = useState(160);
+  const [bloodPressureHigh] = useState(130);
+  const [] = useState(80);
+  const [targetPressure] = useState(160);
   const [exercise, setExercise] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleGenderChange = (event, newGender) => {
+  const handleGenderChange = (
+    _event: any,
+    newGender: React.SetStateAction<string> | null
+  ) => {
     if (newGender !== null) {
       setGender(newGender);
     }

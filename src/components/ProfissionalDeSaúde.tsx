@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -8,20 +7,19 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MedicationIcon from "@mui/icons-material/Medication"; // Best pill icon
 
-const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+const StyledTableContainer = styled(TableContainer)(() => ({
   backgroundColor: "#C8860D",
   borderRadius: "8px",
   overflow: "hidden",
 }));
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(() => ({
   color: "white",
   fontWeight: "bold",
   border: "1px solid #B8860B",
@@ -29,7 +27,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   padding: "12px 8px",
 }));
 
-const StyledTableBodyCell = styled(TableCell)(({ theme }) => ({
+const StyledTableBodyCell = styled(TableCell)(() => ({
   border: "1px solid #B8860B",
   textAlign: "center",
   padding: "12px 8px",
@@ -37,7 +35,7 @@ const StyledTableBodyCell = styled(TableCell)(({ theme }) => ({
   color: "#333",
 }));
 
-const IconBox = styled(Box)(({ theme }) => ({
+const IconBox = styled(Box)(() => ({
   backgroundColor: "#C8860D",
   borderRadius: "8px",
   padding: "20px",
@@ -167,7 +165,7 @@ const ProfissionalDeSaude = () => {
               disponíveis em Portugal
             </Typography>
 
-            <StyledTableContainer component={Paper} elevation={0}>
+            <StyledTableContainer>
               <Table size={isMobile ? "small" : "medium"}>
                 <TableHead>
                   <TableRow sx={{ backgroundColor: "#B8860B" }}>
