@@ -10,8 +10,11 @@ import {
   CardContent,
   useTheme,
   useMediaQuery,
+  Button,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import AvatarImage from "../assets/avatar.png";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports"; // Add this import
 
 const Utente = () => {
   const [gender, setGender] = useState("Masculino");
@@ -44,10 +47,45 @@ const Utente = () => {
         backgroundColor: "#E3F2FD",
         p: 3,
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
+      <Box
+        sx={{
+          mb: 3,
+          mr: isMobile ? 0 : "20",
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "flex-end",
+          width: "100%",
+        }}
+      >
+        <Button
+          variant="contained"
+          size="large"
+          startIcon={<SportsEsportsIcon />}
+          component={RouterLink}
+          to="/game"
+          sx={{
+            backgroundColor: "#4FC3F7",
+            "&:hover": {
+              backgroundColor: "#29B6F6",
+            },
+            px: 3,
+            py: 1.5,
+            fontSize: "1rem",
+            fontWeight: "bold",
+            borderRadius: 2,
+            boxShadow: 3,
+            mr: 4, // Add margin-right here
+          }}
+        >
+          Play Game
+        </Button>
+      </Box>
+
       <Card
         sx={{
           backgroundColor: "white",
