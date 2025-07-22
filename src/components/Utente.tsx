@@ -82,7 +82,7 @@ const Utente = () => {
             mr: 4, // Add margin-right here
           }}
         >
-          Play Game
+          Jogar jogo
         </Button>
       </Box>
 
