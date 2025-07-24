@@ -11,7 +11,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box>
-        <Router basename="/sem-new">
+        <Router>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
