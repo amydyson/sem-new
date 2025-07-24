@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import LogoutButton from "./LogoutButton";
 import UtenteImage from "../assets/New-Utente.png";
-import ProfissionalImage from "../assets/new-profissional.png";
+import ProfissionalImage from "../assets/New-Profissional.png";
 import BloodCuffImage from "../assets/newest-one.png";
 import SemPressaoIcon from "../assets/SEM-PRESSÃO-icon.png";
 
