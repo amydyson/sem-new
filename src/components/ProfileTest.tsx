@@ -1,5 +1,7 @@
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "../../amplify/data/resource";
+import { useState, useEffect } from "react";
+// Remove these Amplify imports for now:
+// import { generateClient } from 'aws-amplify/data';
+// import type { Schema } from '../../amplify/data/resource';
 import {
   Box,
   TextField,
@@ -12,16 +14,9 @@ import {
   Alert,
 } from "@mui/material";
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  type ReactElement,
-  type JSXElementConstructor,
-  type ReactNode,
-  type ReactPortal,
-  useState,
-  useEffect,
-} from "react";
 
-const client = generateClient<Schema>();
+// Remove the client line:
+// const client = generateClient<Schema>();
 
 const ProfileTest = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -32,7 +27,7 @@ const ProfileTest = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Create profile
+  // Mock save function until backend is ready
   const handleSave = async () => {
     if (!user?.sub) {
       setMessage("User not authenticated");
@@ -42,23 +37,25 @@ const ProfileTest = () => {
     try {
       setLoading(true);
 
-      const result = await client.models.UserProfile.create({
+      // Mock saving - just add to local state
+      const newProfile = {
+        id: Date.now().toString(),
         userId: user.sub,
         height: parseFloat(height),
         weight: parseFloat(weight),
         gender: gender as "Masculino" | "Feminino",
-      });
+      };
 
-      console.log("Created profile:", result);
-      setMessage("Profile saved successfully!");
+      console.log("Mock saved profile:", newProfile);
+      setMessage("Profile saved successfully! (Mock save)");
+
+      // Add to local profiles array
+      setProfiles((prev) => [...prev, newProfile]);
 
       // Clear form
       setHeight("");
       setWeight("");
       setGender("");
-
-      // Refresh list
-      loadProfiles();
     } catch (error) {
       console.error("Error saving profile:", error);
       setMessage("Error saving profile");
@@ -67,18 +64,12 @@ const ProfileTest = () => {
     }
   };
 
-  // Load all profiles
+  // Mock load function
   const loadProfiles = async () => {
-    try {
-      const result = await client.models.UserProfile.list();
-      console.log("Loaded profiles:", result);
-      setProfiles(result.data || []);
-    } catch (error) {
-      console.error("Error loading profiles:", error);
-    }
+    console.log("Mock loading profiles...");
+    // Profiles will be loaded from local state
   };
 
-  // Load profiles on component mount
   useEffect(() => {
     loadProfiles();
   }, []);
@@ -94,17 +85,15 @@ const ProfileTest = () => {
   return (
     <Box sx={{ p: 3, maxWidth: 600, mx: "auto" }}>
       <Typography variant="h4" gutterBottom>
-        Database Test - User Profile
+        Mock Database Test - User Profile
       </Typography>
 
-      {/* Form */}
       <Card sx={{ mb: 3 }}>
         <CardContent>
           <Typography variant="h6" gutterBottom>
-            Add New Profile
+            Add New Profile (Mock)
           </Typography>
 
-          {/* Height */}
           <TextField
             label="Height (cm)"
             value={height}
@@ -114,7 +103,6 @@ const ProfileTest = () => {
             sx={{ mb: 2 }}
           />
 
-          {/* Weight */}
           <TextField
             label="Weight (kg)"
             value={weight}
@@ -124,7 +112,6 @@ const ProfileTest = () => {
             sx={{ mb: 2 }}
           />
 
-          {/* Gender */}
           <Typography variant="body2" sx={{ mb: 1 }}>
             Gender
           </Typography>
@@ -148,7 +135,7 @@ const ProfileTest = () => {
             disabled={loading || !height || !weight || !gender}
             fullWidth
           >
-            {loading ? "Saving..." : "Save Profile"}
+            {loading ? "Saving..." : "Save Profile (Mock)"}
           </Button>
 
           {message && (
@@ -162,175 +149,44 @@ const ProfileTest = () => {
         </CardContent>
       </Card>
 
-      {/* Display existing profiles */}
       <Card>
         <CardContent>
           <Typography variant="h6" gutterBottom>
-            Existing Profiles ({profiles.length})
+            Saved Profiles ({profiles.length})
           </Typography>
 
-          <Button onClick={loadProfiles} variant="outlined" sx={{ mb: 2 }}>
-            Refresh
-          </Button>
-
-          {profiles.map(
-            (
-              profile: {
-                id:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<unknown, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactPortal
-                      | ReactElement<
-                          unknown,
-                          string | JSXElementConstructor<any>
-                        >
-                      | Iterable<ReactNode>
-                      | null
-                      | undefined
-                    >
-                  | null
-                  | undefined;
-                userId:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<unknown, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactPortal
-                      | ReactElement<
-                          unknown,
-                          string | JSXElementConstructor<any>
-                        >
-                      | Iterable<ReactNode>
-                      | null
-                      | undefined
-                    >
-                  | null
-                  | undefined;
-                height:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<unknown, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactPortal
-                      | ReactElement<
-                          unknown,
-                          string | JSXElementConstructor<any>
-                        >
-                      | Iterable<ReactNode>
-                      | null
-                      | undefined
-                    >
-                  | null
-                  | undefined;
-                weight:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<unknown, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactPortal
-                      | ReactElement<
-                          unknown,
-                          string | JSXElementConstructor<any>
-                        >
-                      | Iterable<ReactNode>
-                      | null
-                      | undefined
-                    >
-                  | null
-                  | undefined;
-                gender:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<unknown, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactPortal
-                      | ReactElement<
-                          unknown,
-                          string | JSXElementConstructor<any>
-                        >
-                      | Iterable<ReactNode>
-                      | null
-                      | undefined
-                    >
-                  | null
-                  | undefined;
-              },
-              index: any
-            ) => (
-              <Box
-                key={profile.id || index}
-                sx={{
-                  p: 2,
-                  border: 1,
-                  borderColor: "grey.300",
-                  mb: 1,
-                  borderRadius: 1,
-                }}
-              >
-                <Typography>
-                  <strong>User ID:</strong> {profile.userId}
-                </Typography>
-                <Typography>
-                  <strong>Height:</strong> {profile.height} cm
-                </Typography>
-                <Typography>
-                  <strong>Weight:</strong> {profile.weight} kg
-                </Typography>
-                <Typography>
-                  <strong>Gender:</strong> {profile.gender}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  ID: {profile.id}
-                </Typography>
-              </Box>
-            )
-          )}
+          {profiles.map((profile, index) => (
+            <Box
+              key={profile.id || index}
+              sx={{
+                p: 2,
+                border: 1,
+                borderColor: "grey.300",
+                mb: 1,
+                borderRadius: 1,
+              }}
+            >
+              <Typography>
+                <strong>User ID:</strong> {profile.userId}
+              </Typography>
+              <Typography>
+                <strong>Height:</strong> {profile.height} cm
+              </Typography>
+              <Typography>
+                <strong>Weight:</strong> {profile.weight} kg
+              </Typography>
+              <Typography>
+                <strong>Gender:</strong> {profile.gender}
+              </Typography>
+              <Typography variant="caption" color="text.secondary">
+                ID: {profile.id} (Mock)
+              </Typography>
+            </Box>
+          ))}
 
           {profiles.length === 0 && (
             <Typography color="text.secondary">
-              No profiles found. Create one above!
+              No profiles saved yet. Create one above!
             </Typography>
           )}
         </CardContent>
