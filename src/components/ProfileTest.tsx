@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "../../amplify/data/resource";
 import {
@@ -13,6 +12,14 @@ import {
   Alert,
 } from "@mui/material";
 import { useAuth0 } from "@auth0/auth0-react";
+import {
+  type ReactElement,
+  type JSXElementConstructor,
+  type ReactNode,
+  type ReactPortal,
+  useState,
+  useEffect,
+} from "react";
 
 const client = generateClient<Schema>();
 
@@ -166,34 +173,160 @@ const ProfileTest = () => {
             Refresh
           </Button>
 
-          {profiles.map((profile, index) => (
-            <Box
-              key={profile.id || index}
-              sx={{
-                p: 2,
-                border: 1,
-                borderColor: "grey.300",
-                mb: 1,
-                borderRadius: 1,
-              }}
-            >
-              <Typography>
-                <strong>User ID:</strong> {profile.userId}
-              </Typography>
-              <Typography>
-                <strong>Height:</strong> {profile.height} cm
-              </Typography>
-              <Typography>
-                <strong>Weight:</strong> {profile.weight} kg
-              </Typography>
-              <Typography>
-                <strong>Gender:</strong> {profile.gender}
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                ID: {profile.id}
-              </Typography>
-            </Box>
-          ))}
+          {profiles.map(
+            (
+              profile: {
+                id:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactElement<unknown, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | Promise<
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactPortal
+                      | ReactElement<
+                          unknown,
+                          string | JSXElementConstructor<any>
+                        >
+                      | Iterable<ReactNode>
+                      | null
+                      | undefined
+                    >
+                  | null
+                  | undefined;
+                userId:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactElement<unknown, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | Promise<
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactPortal
+                      | ReactElement<
+                          unknown,
+                          string | JSXElementConstructor<any>
+                        >
+                      | Iterable<ReactNode>
+                      | null
+                      | undefined
+                    >
+                  | null
+                  | undefined;
+                height:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactElement<unknown, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | Promise<
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactPortal
+                      | ReactElement<
+                          unknown,
+                          string | JSXElementConstructor<any>
+                        >
+                      | Iterable<ReactNode>
+                      | null
+                      | undefined
+                    >
+                  | null
+                  | undefined;
+                weight:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactElement<unknown, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | Promise<
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactPortal
+                      | ReactElement<
+                          unknown,
+                          string | JSXElementConstructor<any>
+                        >
+                      | Iterable<ReactNode>
+                      | null
+                      | undefined
+                    >
+                  | null
+                  | undefined;
+                gender:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactElement<unknown, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | Promise<
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactPortal
+                      | ReactElement<
+                          unknown,
+                          string | JSXElementConstructor<any>
+                        >
+                      | Iterable<ReactNode>
+                      | null
+                      | undefined
+                    >
+                  | null
+                  | undefined;
+              },
+              index: any
+            ) => (
+              <Box
+                key={profile.id || index}
+                sx={{
+                  p: 2,
+                  border: 1,
+                  borderColor: "grey.300",
+                  mb: 1,
+                  borderRadius: 1,
+                }}
+              >
+                <Typography>
+                  <strong>User ID:</strong> {profile.userId}
+                </Typography>
+                <Typography>
+                  <strong>Height:</strong> {profile.height} cm
+                </Typography>
+                <Typography>
+                  <strong>Weight:</strong> {profile.weight} kg
+                </Typography>
+                <Typography>
+                  <strong>Gender:</strong> {profile.gender}
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  ID: {profile.id}
+                </Typography>
+              </Box>
+            )
+          )}
 
           {profiles.length === 0 && (
             <Typography color="text.secondary">

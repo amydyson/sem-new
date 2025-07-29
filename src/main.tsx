@@ -9,18 +9,6 @@ import App from "./App.tsx";
 
 Amplify.configure(outputs);
 
-const getRedirectUri = () => {
-  if (
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-  ) {
-    return `${window.location.origin}`;
-  }
-  return import.meta.env.VITE_REDIRECT_URI;
-};
-
-const redirectUri = getRedirectUri();
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Auth0Provider
