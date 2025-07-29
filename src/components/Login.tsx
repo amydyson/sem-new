@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();
   const navigate = useNavigate();
 
   // Redirect to home if already authenticated
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/home");
-    }
+    console.log("User object:", user); // See all user data
+    console.log("User roles:", user?.["https://your-app.com/roles"]); // Custom claim
+    // navigate("/home");
   }, [isAuthenticated, navigate]);
 
   if (isLoading) {
@@ -19,7 +19,15 @@ const Login = () => {
   }
 
   if (isAuthenticated) {
-    return null; // Will redirect via useEffect
+    if (
+      user?.["https://sem-prassao.com/roles"][0] === "Profissional de Saúde"
+    ) {
+      navigate("/profissional-de-saúde");
+    } else if (user?.["https://sem-prassao.com/roles"][0] === "Admin") {
+      navigate("/admin");
+    } else {
+      navigate("/utente");
+    }
   }
 
   return (
